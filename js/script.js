@@ -110,3 +110,54 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// Certificate Modal Functions
+function openModal(imageSrc, title, description) {
+    const modal = document.getElementById('certificateModal');
+    const modalImg = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    
+    modal.style.display = 'block';
+    modalImg.src = imageSrc;
+    modalTitle.textContent = title;
+    modalDescription.textContent = description;
+}
+
+function closeModal() {
+    const modal = document.getElementById('certificateModal');
+    modal.style.display = 'none';
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
+
+// Section Scroll Button
+const sectionScrollBtn = document.getElementById('sectionScroll');
+const allSections = ['home', 'about', 'skills', 'certificates', 'experience', 'contact'];
+let currentSectionIndex = 0;
+
+window.addEventListener('scroll', () => {
+    allSections.forEach((sectionId, index) => {
+        const section = document.getElementById(sectionId
+allSections.forEach((sectionId, index) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 200 && rect.bottom >= 200) {
+            currentSectionIndex = index;
+        }
+    }
+});
+
+sectionScrollBtn.addEventListener('click', () => {
+    currentSectionIndex = (currentSectionIndex + 1) % allSections.length;
+    const nextSection = document.getElementById(allSections[currentSectionIndex]);
+    if (nextSection) {
+        nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+});
